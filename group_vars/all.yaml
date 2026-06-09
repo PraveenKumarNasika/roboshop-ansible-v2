@@ -1,0 +1,11 @@
+ansible_user: ec2-user
+ansible_password: DevOps321
+MONGODB_HOST: mongodb.nasika.site
+REDIS_HOST: redis.nasika.site
+MYSQL_HOST: mysql.nasika.site 
+RABBITMQ_HOST: rabbitmq.nasika.site 
+CATALOGUE_HOST: catalogue.nasika.site
+USER_HOST: user.nasika.site
+CART_HOST: cart.nasika.site
+SHIPPING_HOST: shipping.nasika.site
+PAYMENT_HOST: payment.nasika.site

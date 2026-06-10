@@ -13,6 +13,12 @@
     name: common
     tasks_from: systemd-setup
 
+- name: clean dnf cache
+  command: dnf clean all
+
+- name: rebuild dnf cache
+  command: dnf makecache
+
 - name: copy mongodb repo
   copy:
     src: mongo.repo

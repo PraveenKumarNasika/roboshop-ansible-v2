@@ -1,3 +1,8 @@
+- name: Remove broken mongodb-mongosh repo file
+  file:
+    path: /etc/yum.repos.d/mongodb-mongosh.repo
+    state: absent
+    
 - name: enable nodejs 20
   command: dnf module enable nodejs:20 -y
 

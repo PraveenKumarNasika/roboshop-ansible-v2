@@ -19,10 +19,20 @@
 - name: rebuild dnf cache
   command: dnf makecache
 
-- name: copy mongodb repo
+- name: copy mongosh repo
   copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
+    dest: /etc/yum.repos.d/mongosh.repo
+    content: |
+      [mongodb-mongosh]
+      name=MongoDB Shell
+      baseurl=https://repo.mongodb.org/yum/redhat/9/mongodb-mongosh/1.10/x86_64/
+      enabled=1
+      gpgcheck=0
+
+# - name: copy mongodb repo
+#   copy:
+#     src: mongo.repo
+#     dest: /etc/yum.repos.d/mongo.repo
 - name: install mongodb client
   package:
     name: mongodb-mongosh

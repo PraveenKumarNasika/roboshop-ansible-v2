@@ -13,36 +13,14 @@
     name: common
     tasks_from: systemd-setup
 
-- name: clean dnf cache
-  command: dnf clean all
-
-- name: rebuild dnf cache
-  command: dnf makecache
-
-- name: copy mongosh repo
+- name: copy mongodb repo
   copy:
-    dest: /etc/yum.repos.d/mongosh.repo
-    content: |
-      [mongodb-mongosh]
-      name=MongoDB Shell
-      baseurl=https://repo.mongodb.org/yum/redhat/9/mongodb-mongosh/1.10/x86_64/
-      enabled=1
-      gpgcheck=0
-
-# - name: copy mongodb repo
-#   copy:
-#     src: mongo.repo
-#     dest: /etc/yum.repos.d/mongo.repo
-# - name: install mongodb client
-#   package:
-#     name: mongodb-mongosh
-#     state: present
-
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
 - name: install mongodb client
   package:
-    name: mongosh
+    name: mongodb-mongosh
     state: present
-
 - name: check catalogue schema exist ot not
   shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
   register: catalogue_output

@@ -1,8 +1,11 @@
-- name: Remove broken mongodb-mongosh repo file
-  file:
-    path: /etc/yum.repos.d/mongodb-mongosh.repo
-    state: absent
-    
+- name: Disable mongodb-mongosh repo if present
+  shell: |
+    dnf config-manager --disable mongodb-mongosh || true
+  ignore_errors: yes
+
+- name: Clean DNF cache
+  shell: dnf clean all
+
 - name: enable nodejs 20
   command: dnf module enable nodejs:20 -y
 
